@@ -1,0 +1,36 @@
+{
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 6
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "camelcase": 2,
+        "semi": 2,
+        "quotes": [2, "single"],
+        "no-undef": 2,
+        "no-use-before-define": [2, "nofunc"],
+        "no-multi-spaces": 0,
+        "no-underscore-dangle": 0,
+        "no-shadow": 0,
+        "strict": 2,
+        "key-spacing": ["error", {
+            "beforeColon": false,
+            "afterColon": true
+        }],
+        "keyword-spacing": [2, {
+            "before": true,
+            "after": true
+        }],
+        "no-alert": 0,
+        "array-callback-return": 1,
+        "no-self-assign": 2,
+        "id-blacklist": [2, "self"],
+        "template-curly-spacing": [2, "never"],
+        "space-before-function-paren": [2, {"anonymous": "never", "named": "always"}]
+    }
+}
