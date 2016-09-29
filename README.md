@@ -15,10 +15,7 @@ import amd form 'rollup-pluign-amd';
 rollup({
     entry: 'main.js',
     plugins: [
-        amd({
-            include: 'src/**', // Default: undefined (everything)
-            exclude: [ 'node_modules/**' ], // Default: undefined (nothing)
-        })
+        amd()
     ]
 });
 ```
@@ -38,6 +35,63 @@ import array from './javascripts/utils/array';
 import React from './node_modules/react/react.js';
 
 React.render();
+```
+
+### Options
+
+```js
+import { rollup } from 'rollup';
+import amd form 'rollup-pluign-amd';
+
+rollup({
+    entry: 'main.js',
+    plugins: [
+        amd({
+            include: 'src/**', // Optional, Default: undefined (everything)
+            exclude: [ 'node_modules/**' ], // Optional, Default: undefined (nothing)
+            rewire: function (moduleId, parentPath) { // Optional, Default: false
+                return './basePath/' + moduleId;
+            }
+        })
+    ]
+});
+```
+
+* __rewire__ allows to modify the imported path of `define` dependencies.
+  - `moduleId` is the dependency ID
+  - `parentPath` is the path of the file including the dependency
+
+```js
+define(['lodash'], function (_) {});
+```
+
+becomes
+
+```js
+import _ form './basePath/lodash';
+```
+
+If you're converting AMD modules from requirejs, you can use [node-module-lookup-amd](https://github.com/dependents/node-module-lookup-amd) to rewire your dependencies
+
+```js
+import { rollup } from 'rollup';
+import amd form 'rollup-pluign-amd';
+import lookup from 'module-lookup-amd';
+
+rollup({
+    entry: 'main.js',
+    plugins: [
+        amd({
+            rewire: function (moduleId, parentPath) { // Optional, Default: false
+                return lookup({
+                    partial: moduleId,
+                    filename: parentPath,
+                    config: 'path-to-requirejs.config' // Or an object
+                });
+            }
+        })
+    ]
+});
 ```
 
 ## License

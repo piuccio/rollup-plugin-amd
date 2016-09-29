@@ -2,6 +2,7 @@ import convert from 'buxlabs.amd-to-es6';
 import { createFilter } from 'rollup-pluginutils';
 
 const firstpass = /\b(?:define)\b/;
+const importStatement = /\b(import .*['"])(.*)(['"].*\n)/g;
 
 export default function(options = {}) {
     const filter = createFilter( options.include, options.exclude );
@@ -13,7 +14,14 @@ export default function(options = {}) {
             if ( !filter( id ) ) return;
             if ( !firstpass.test( code ) ) return;
 
-            return convert(code);
+            let transformed = convert(code);
+            if (options.rewire) {
+                transformed = transformed.replace(importStatement, (match, begin, moduleId, end) => {
+                    return `${begin}${options.rewire(moduleId, id)}${end}`;
+                });
+            }
+
+            return transformed;
         }
     };
 }

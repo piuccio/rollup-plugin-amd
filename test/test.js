@@ -18,16 +18,33 @@ function executeBundle ( bundle ) {
 }
 
 describe( 'rollup-plugin-amd', function() {
-    it('finds a module with `define` and relative paths', function() {
-        return rollup.rollup({
-            entry: 'samples/relative.js',
-            plugins: [
-                amd()
-            ]
-        })
-        .then(executeBundle)
-        .then(module => {
-            assert.equal(module.exports, 15);
-        });
-    });
+	it('finds a module with `define` and relative paths', function() {
+		return rollup.rollup({
+			entry: 'samples/relative.js',
+			plugins: [
+				amd()
+			]
+		})
+		.then(executeBundle)
+		.then(module => {
+			assert.equal(module.exports, 15);
+		});
+	});
+
+	it('rewires dependencies', function() {
+		return rollup.rollup({
+			entry: 'samples/rewire.js',
+			plugins: [
+				amd({
+					rewire: function(moduleId) {
+						return './nested/' + moduleId;
+					}
+				})
+			]
+		})
+		.then(executeBundle)
+		.then(module => {
+			assert.equal(module.exports, 15);
+		});
+	});
 });
