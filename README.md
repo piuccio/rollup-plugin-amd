@@ -10,7 +10,7 @@ Convert AMD files to ES2016 modules, so they can be included in a Rollup bundle.
 
 ```js
 import { rollup } from 'rollup';
-import amd form 'rollup-pluign-amd';
+import amd from 'rollup-pluign-amd';
 
 rollup({
     entry: 'main.js',
