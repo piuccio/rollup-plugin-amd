@@ -1,16 +1,16 @@
-# rollup-pluign-amd
+# rollup-plugin-amd
 
 Convert AMD files to ES2016 modules, so they can be included in a Rollup bundle.
 
 ## Installation
 
-`npm install --save-dev rollup-pluign-amd`
+`npm install --save-dev rollup-plugin-amd`
 
 ## Usage
 
 ```js
 import { rollup } from 'rollup';
-import amd form 'rollup-pluign-amd';
+import amd from 'rollup-plugin-amd';
 
 rollup({
     entry: 'main.js',
@@ -41,7 +41,7 @@ React.render();
 
 ```js
 import { rollup } from 'rollup';
-import amd form 'rollup-pluign-amd';
+import amd form 'rollup-plugin-amd';
 
 rollup({
     entry: 'main.js',
@@ -75,7 +75,7 @@ If you're converting AMD modules from requirejs, you can use [node-module-lookup
 
 ```js
 import { rollup } from 'rollup';
-import amd form 'rollup-pluign-amd';
+import amd form 'rollup-plugin-amd';
 import lookup from 'module-lookup-amd';
 
 rollup({
