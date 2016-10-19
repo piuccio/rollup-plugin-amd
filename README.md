@@ -4,7 +4,7 @@ Convert AMD files to ES2016 modules, so they can be included in a Rollup bundle.
 
 ## Installation
 
-`npm install --save-dev rollup-pluign-amd`
+`npm install --save-dev rollup-plugin-amd`
 
 ## Usage
 
