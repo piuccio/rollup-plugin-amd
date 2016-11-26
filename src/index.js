@@ -1,4 +1,4 @@
-import convert from 'buxlabs.amd-to-es6';
+import convert from '@buxlabs/amd-to-es6';
 import { createFilter } from 'rollup-pluginutils';
 
 const firstpass = /\b(?:define)\b/;
