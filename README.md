@@ -41,7 +41,7 @@ React.render();
 
 ```js
 import { rollup } from 'rollup';
-import amd form 'rollup-plugin-amd';
+import amd from 'rollup-plugin-amd';
 
 rollup({
     entry: 'main.js',
