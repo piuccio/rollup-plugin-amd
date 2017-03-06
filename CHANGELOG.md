@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Update buxlabs amd-to-es6 to 0.8.2
+
 ## 1.2.0
 
 * Update buxlabs amd-to-es6 to 0.7.8
