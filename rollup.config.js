@@ -5,22 +5,20 @@ var pkg = require('./package.json');
 var external = Object.keys( require( './package.json' ).dependencies ).concat([ 'fs', 'path' ]);
 
 export default {
-	entry: 'src/index.js',
+	input: 'src/index.js',
 	plugins: [
 		buble({
 			transforms: { dangerousForOf: true }
 		})
 	],
+	output: [{
+		format: 'es',
+		file: pkg.module,
+		sourcemap: true,
+	}, {
+		format: 'cjs',
+		file: pkg.main,
+		sourcemap: true,
+	}],
 	external: external,
-	sourceMap: true,
-	targets: [
-		{
-			format: 'es',
-			dest: pkg.module
-		},
-		{
-			format: 'cjs',
-			dest: pkg.main
-		}
-	]
 };
