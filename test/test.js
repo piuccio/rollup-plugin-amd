@@ -5,10 +5,12 @@ const amd = require( '..' );
 process.chdir( __dirname );
 
 function executeBundle ( bundle ) {
-	const generated = bundle.generate({
+	return bundle.generate({
 		format: 'cjs'
-	});
+	}).then(doSomething);
+}
 
+function doSomething (generated) {
 	const fn = new Function ( 'module', 'exports', 'assert', generated.code );
 	const module = { exports: {} };
 
@@ -20,7 +22,7 @@ function executeBundle ( bundle ) {
 describe( 'rollup-plugin-amd', function() {
 	it('finds a module with `define` and relative paths', function() {
 		return rollup.rollup({
-			entry: 'samples/relative.js',
+			input: 'samples/relative.js',
 			plugins: [
 				amd()
 			]
@@ -33,7 +35,7 @@ describe( 'rollup-plugin-amd', function() {
 
 	it('rewires dependencies', function() {
 		return rollup.rollup({
-			entry: 'samples/rewire.js',
+			input: 'samples/rewire.js',
 			plugins: [
 				amd({
 					rewire: function(moduleId) {
