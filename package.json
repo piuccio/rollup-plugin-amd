@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-amd",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Convert AMD files to ES2016 modules",
   "main": "dist/rollup-plugin-amd.cjs.js",
   "module": "dist/rollup-plugin-amd.es.js",
