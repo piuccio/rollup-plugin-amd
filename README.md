@@ -71,14 +71,14 @@ define(['lodash'], function (_) {});
 becomes
 
 ```js
-import _ form './basePath/lodash';
+import _ from './basePath/lodash';
 ```
 
 If you're converting AMD modules from requirejs, you can use [node-module-lookup-amd](https://github.com/dependents/node-module-lookup-amd) to rewire your dependencies
 
 ```js
 import { rollup } from 'rollup';
-import amd form 'rollup-plugin-amd';
+import amd from 'rollup-plugin-amd';
 import lookup from 'module-lookup-amd';
 
 rollup({
