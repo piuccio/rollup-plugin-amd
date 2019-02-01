@@ -14,7 +14,7 @@ export default function(options = {}) {
             if ( !filter( id ) ) return;
             if ( !firstpass.test( code ) ) return;
 
-            let transformed = convert(code);
+            let transformed = convert(code, options.converter);
             if (options.rewire) {
                 transformed = transformed.replace(importStatement, (match, begin, moduleId, end) => {
                     return `${begin}${options.rewire(moduleId, id) || moduleId}${end}`;
