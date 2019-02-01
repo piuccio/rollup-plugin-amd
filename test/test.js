@@ -4,10 +4,15 @@ const amd = require( '..' );
 
 process.chdir( __dirname );
 
-function executeBundle ( bundle ) {
-	return bundle.generate({
+async function executeBundle ( bundle ) {
+	const { output } = await bundle.generate({
 		format: 'cjs'
-	}).then(doSomething);
+	});
+	for (const chunkOrAsset of output) {
+		if (!chunkOrAsset.isAsset) {
+			return doSomething(chunkOrAsset);
+		}
+	}
 }
 
 function doSomething (generated) {
