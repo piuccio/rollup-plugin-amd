@@ -49,7 +49,7 @@ rollup({
         amd({
             include: 'src/**', // Optional, Default: undefined (everything)
             exclude: [ 'node_modules/**' ], // Optional, Default: undefined (nothing)
-            converter: {}, // Optional, Default: undefined
+            converter: {}, // Optional, Default: { sourceMap: true }
             rewire: function (moduleId, parentPath) { // Optional, Default: false
                 return './basePath/' + moduleId;
             }
@@ -58,7 +58,16 @@ rollup({
 });
 ```
 
-* __converter__ options to pass down to the AMD to ES6 [converter](https://github.com/buxlabs/amd-to-es6).
+* __converter__ options to pass down to the AMD to ES6 [converter](https://github.com/buxlabs/amd-to-es6#options).
+  - Please note that `converter` option is set to `{ sourceMap: true }` by default. If you want to disable sourcemap, you can set it as `{ sourceMap: false }`. However, this may bring some [sourcemap related issues](https://rollupjs.org/guide/en/#warning-sourcemap-is-likely-to-be-incorrect)
+  - Other options for converter can be passed down in the same way as we set the sourcemap
+    ```js
+    converter: {
+        sourceMap: true, // Default
+        someOtherOption: someOtherOptionValue
+        ...
+    }
+    ```
 
 * __rewire__ allows to modify the imported path of `define` dependencies.
   - `moduleId` is the dependency ID
